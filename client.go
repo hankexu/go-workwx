@@ -32,6 +32,14 @@ type WorkwxApp struct {
 	jsapiTicketAgentConfig *token
 }
 
+func GetAccessToken(c *WorkwxApp) (string, error) {
+	tok, err := c.accessToken.getToken()
+	if err != nil {
+		return "", err
+	}
+	return tok, nil
+}
+
 // New 构造一个 Workwx 客户端对象，需要提供企业 ID
 func New(corpID string, opts ...CtorOption) *Workwx {
 	optionsObj := defaultOptions()
